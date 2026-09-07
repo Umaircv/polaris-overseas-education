@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-body: "Manrope Variable", Manrope, "Segoe UI", Arial, sans-serif;
+  --font-heading: "Lora Variable", Lora, Georgia, "Times New Roman", serif;
   --navy: #082f5c;
   --navy-deep: #031d39;
   --blue: #0c5b9b;
@@ -9,14 +11,14 @@
   --gold-light: #ffc341;
   --cream: #f7f4ec;
   --ink: #10263a;
-  --muted: #627488;
+  --muted: #4f6477;
   --line: #d9e1e5;
   --white: #ffffff;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--cream); font-family: "Segoe UI", Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; color: var(--ink); background: var(--cream); font-family: var(--font-body); font-size: 16px; line-height: 1.65; letter-spacing: -.008em; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; }
@@ -1168,4 +1170,490 @@ body:has(.mobile-nav[open]) .whatsapp-float, body:has(.mobile-nav[open]) .pwa-in
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Production typography system: readable, consistent and device-independent. */
+html { font-size: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, button, input, select, textarea { font-family: var(--font-body); }
+h1, h2, h3, blockquote, .brand-lockup strong { font-family: var(--font-heading) !important; font-optical-sizing: auto; }
+h1, h2, h3 { text-wrap: balance; }
+p, li, address { text-wrap: pretty; }
+small { font-size: .8125rem !important; line-height: 1.5; }
+
+.hero h1,
+.section-heading h2,
+.why-choose-heading h2,
+.popular-universities-heading h2,
+.why-copy h2,
+.tracking-copy h2,
+.process-heading h2,
+.finder-feature-copy h2,
+.faq-title h2,
+.contact-copy h2,
+.finder-page-hero h1,
+.official-source-header h2,
+.scholarship-intro h2,
+.italy-intro-copy h1,
+.italy-search-heading h2,
+.page-hero-copy h1,
+.inner-section-heading h2,
+.service-includes-section h2,
+.inner-contact-cta h2,
+.story-panel > div:last-child h2,
+.blog-article > header h1,
+.office-map-copy h2,
+.office-enquiry-section > div:first-child h2,
+.ielts-booking-hero h1,
+.ielts-booking-intro h2,
+.scholarship-hero-copy h1,
+.scholarship-finder-heading h2,
+.scholarship-method-section h2 {
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.hero h1 { font-size: clamp(3.25rem, 5vw, 4.9rem); }
+.section-heading h2,
+.why-choose-heading h2,
+.popular-universities-heading h2,
+.why-copy h2,
+.tracking-copy h2,
+.process-heading h2,
+.finder-feature-copy h2,
+.faq-title h2,
+.contact-copy h2,
+.official-source-header h2,
+.scholarship-intro h2,
+.inner-section-heading h2,
+.service-includes-section h2,
+.story-panel > div:last-child h2,
+.office-map-copy h2,
+.office-enquiry-section > div:first-child h2,
+.ielts-booking-intro h2,
+.scholarship-finder-heading h2,
+.scholarship-method-section h2 { font-size: clamp(2.4rem, 4vw, 3.75rem); }
+.finder-page-hero h1,
+.page-hero-copy h1,
+.blog-article > header h1,
+.ielts-booking-hero h1,
+.scholarship-hero-copy h1 { font-size: clamp(3rem, 5vw, 4.75rem); }
+.italy-intro-copy h1 { font-size: clamp(3.25rem, 5vw, 4.75rem); }
+.italy-search-heading h2 { font-size: clamp(2.25rem, 3.6vw, 3.25rem); }
+
+.topline { font-size: .75rem; line-height: 1.45; }
+.brand-lockup strong { font-size: 1.5rem; letter-spacing: .025em; }
+.brand-lockup small { font-size: .75rem !important; letter-spacing: .14em; }
+.desktop-nav a,
+.nav-dropdown > summary { font-size: .875rem; font-weight: 700; letter-spacing: -.01em; }
+.nav-dropdown-menu a { font-size: .875rem; }
+.header-phones a { font-size: .875rem; line-height: 1.45; }
+.header-cta { font-size: .875rem; }
+.mobile-nav > div a,
+.mobile-services-menu > summary,
+.mobile-nav .mobile-services-menu > div a { font-size: .9375rem; }
+
+.eyebrow { font-size: .8125rem; line-height: 1.5; letter-spacing: .12em; }
+.hero-lead,
+.page-hero-copy > p:not(.eyebrow),
+.finder-page-hero p,
+.italy-intro-copy > p:not(.eyebrow),
+.ielts-booking-hero > div > p:not(.eyebrow),
+.scholarship-hero-copy > p:not(.eyebrow) { font-size: 1.0625rem; line-height: 1.75; }
+.hero-proof,
+.hero-proof span,
+.support-strip span { font-size: .8125rem; line-height: 1.55; }
+.button,
+.hero-actions .button,
+.finder-demo > a,
+.section-page-link,
+.page-hero-actions a,
+.italy-hero-actions a,
+.ielts-booking-hero > div > a,
+.scholarship-hero-actions a { font-size: .9rem; font-weight: 800; }
+
+.section-heading > p,
+.why-choose-heading > p:not(.eyebrow),
+.popular-universities-heading > p:not(.eyebrow),
+.why-copy > p:not(.eyebrow),
+.tracking-copy > p:not(.eyebrow),
+.process-heading > p:not(.eyebrow),
+.finder-feature-copy > p:not(.eyebrow),
+.faq-title > p:not(.eyebrow),
+.contact-copy > p:not(.eyebrow),
+.scholarship-intro > p:not(.eyebrow),
+.inner-section-heading > p:last-child,
+.service-includes-section > div > p:last-child,
+.inner-contact-cta > div:first-child > p:last-child,
+.story-panel > div:last-child > p:last-of-type,
+.office-map-copy > p:not(.eyebrow),
+.office-enquiry-section > div:first-child > p:last-child,
+.ielts-booking-intro > p:not(.eyebrow),
+.scholarship-finder-heading > div:first-child > p:last-child { font-size: 1rem; line-height: 1.75; }
+
+.service-card p,
+.destination-photo-overlay p,
+.destination-flag-card p,
+.why-choose-grid p,
+.steps-v2 p,
+.finder-demo article p,
+.home-blog-grid p,
+.official-source-card > p,
+.catalogue-partner-note p,
+.university-card p,
+.scholarship-grid p,
+.feature-step-grid p,
+.route-card-grid p,
+.principle-grid p,
+.destination-route-grid p,
+.journey-timeline p,
+.featured-blog-card p,
+.blog-card-grid p,
+.office-map-copy address,
+.scholarship-card-copy > p:last-child,
+.scholarship-method-grid p { font-size: .9375rem; line-height: 1.7; }
+
+.service-number,
+.destination-photo-overlay > span,
+.destination-photo-overlay small,
+.destination-flag-card > small,
+.university-mark small,
+.university-disclaimer,
+.value-grid span,
+.tracking-status,
+.tracking-journey article > span,
+.steps-v2 article > span,
+.finder-demo article small,
+.form-title span,
+.form-note,
+.home-blog-grid > a > div span,
+.home-blog-grid > a > div small,
+.home-blog-grid footer small,
+.catalogue-note,
+.source-card-top small,
+.official-source-card dt,
+.shortlist-disclaimer span,
+.shortlist-disclaimer p,
+.country-chip,
+.featured-chip,
+.course-meta span,
+.comparison-grid small,
+.university-card small,
+.scholarship-grid article > div > span,
+.scholarship-flag-grid article > small,
+.source-pulse,
+.italy-source-strip p,
+.italy-search-heading small,
+.italy-card-index small,
+.italy-card-badges span,
+.italian-title,
+.italy-course-meta small,
+.italy-card-actions small,
+.hero-service-marker small,
+.service-includes-section li > span,
+.route-card-grid > a > span,
+.journey-progress-card span,
+.journey-progress-card small,
+.journey-timeline article > span,
+.blog-hero-aside > span,
+.office-hero-card > span,
+.featured-blog-card > div span,
+.featured-blog-card > div small,
+.blog-card-grid > a > div span,
+.blog-card-grid > a > div small,
+.blog-card-grid footer small,
+.blog-article > header > p,
+.blog-article-body > aside > span,
+.blog-article-body section small,
+.article-note strong,
+.related-posts a span,
+.related-posts a small,
+.office-contact-grid > a > span,
+.office-contact-grid > a > small,
+.ielts-booking-hero > aside > span,
+.ielts-booking-hero > aside > div span,
+.ielts-booking-hero > aside > small,
+.ielts-booking-progress > div > span,
+.ielts-booking-progress small,
+.ielts-form-heading > span,
+.ielts-slot-preview small,
+.ielts-form-error,
+.ielts-booking-review small,
+.ielts-whatsapp-fallback,
+.scholarship-country-filter small,
+.scholarship-controls label > span:first-child,
+.scholarship-results-toolbar p small,
+.scholarship-country-name small,
+.scholarship-status,
+.scholarship-card-copy > p:first-child,
+.scholarship-tags span,
+.scholarship-deadline small,
+.scholarship-detail-grid li,
+.scholarship-steps li span,
+.scholarship-steps li p,
+.scholarship-card-note,
+.scholarship-official-link small,
+.scholarship-official-link strong,
+.scholarship-source-note span { font-size: .8125rem; line-height: 1.55; }
+
+.finder-fields label,
+.filter-group label,
+.enquiry-form label,
+.enquiry-form label small,
+.italy-filter-field > span,
+.ielts-schedule-grid label > span,
+.ielts-student-grid label > span,
+.ielts-full-field > span,
+.ielts-attempt-field legend,
+.ielts-full-field > small { font-size: .8125rem; line-height: 1.45; }
+.finder-fields select,
+.filter-group select,
+.catalogue-results-header select,
+.italy-keyword-search input,
+.italy-filter-field select,
+.italy-results-toolbar select,
+.ielts-date-input input,
+.ielts-student-grid input,
+.ielts-full-field > input,
+.scholarship-input-wrap input,
+.scholarship-results-toolbar select { font-size: 1rem; line-height: 1.4; }
+
+.course-university,
+.italy-course-university,
+.course-actions button,
+.course-actions a,
+.catalogue-filters button,
+.live-filter-panel > button,
+.source-card-actions a,
+.italy-source-strip > :is(a, button),
+.advanced-filter-toggle,
+.italy-results-toolbar button,
+.italy-pagination button,
+.italy-empty-state a,
+.italy-empty-state button,
+.italy-verification-note > a,
+.blog-hero-aside a,
+.office-hero-card a,
+.ielts-next-button,
+.scholarship-reset,
+.scholarship-details > summary,
+.scholarship-card-actions > a,
+.scholarship-source-note > a { font-size: .8125rem; line-height: 1.45; }
+
+.hero-lead,
+.hero-proof,
+.landmark-mosaic figcaption small,
+.page-hero-copy > p:not(.eyebrow),
+.finder-page-hero p,
+.ielts-booking-hero > div > p:not(.eyebrow),
+.scholarship-hero-copy > p:not(.eyebrow),
+.scholarship-hero-proof,
+.scholarship-hero-board > p,
+.scholarship-hero-board > small { color: #d6e5ef; }
+
+.section-heading > p,
+.why-choose-heading > p:not(.eyebrow),
+.popular-universities-heading > p:not(.eyebrow),
+.why-choose-grid p,
+.service-card p { color: #465e72; }
+
+@media (max-width: 1250px) and (min-width: 981px) {
+  .desktop-nav { gap: 12px; padding-inline: 18px; }
+  .desktop-nav a,
+  .nav-dropdown > summary { font-size: .75rem; }
+}
+
+@media (max-width: 680px) {
+  .hero h1 { font-size: clamp(2.8rem, 12vw, 3.65rem); line-height: 1.04; }
+  .finder-page-hero h1,
+  .page-hero-copy h1,
+  .blog-article > header h1,
+  .ielts-booking-hero h1,
+  .scholarship-hero-copy h1 { font-size: clamp(2.65rem, 11.8vw, 3.65rem); }
+  .italy-intro-copy h1 { font-size: clamp(3rem, 14vw, 4.35rem); }
+  .section-heading h2,
+  .why-choose-heading h2,
+  .popular-universities-heading h2,
+  .why-copy h2,
+  .tracking-copy h2,
+  .process-heading h2,
+  .finder-feature-copy h2,
+  .faq-title h2,
+  .contact-copy h2,
+  .official-source-header h2,
+  .scholarship-intro h2,
+  .inner-section-heading h2,
+  .service-includes-section h2,
+  .story-panel > div:last-child h2,
+  .office-map-copy h2,
+  .office-enquiry-section > div:first-child h2,
+  .ielts-booking-intro h2,
+  .scholarship-finder-heading h2,
+  .scholarship-method-section h2 { font-size: clamp(2.2rem, 9.5vw, 2.8rem); }
+  .hero-lead,
+  .page-hero-copy > p:not(.eyebrow),
+  .finder-page-hero p,
+  .italy-intro-copy > p:not(.eyebrow),
+  .ielts-booking-hero > div > p:not(.eyebrow),
+  .scholarship-hero-copy > p:not(.eyebrow) { font-size: 1rem; line-height: 1.7; }
+  .section { padding-top: 72px; padding-bottom: 72px; }
+  .service-card,
+  .feature-step-grid article,
+  .principle-grid article { min-height: auto; }
+  .service-card p,
+  .why-choose-grid p,
+  .feature-step-grid p,
+  .route-card-grid p,
+  .principle-grid p,
+  .destination-route-grid p,
+  .journey-timeline p,
+  .blog-card-grid p { font-size: 1rem; }
+}
+
+/* Readability pass for compact metadata, cards, portals and footer. */
+.landmark-mosaic figcaption > span {
+  min-width: 32px;
+  min-height: 32px;
+  font-size: .6875rem !important;
+}
+
+.destination-flag-card > a,
+.enquiry-form button,
+.italy-card-actions a,
+.scholarship-card-actions > a {
+  font-size: .875rem !important;
+  line-height: 1.45;
+}
+
+.university-mark small,
+.university-disclaimer,
+.tracking-status,
+.tracking-journey article > span,
+.tracking-journey small,
+.finder-demo article small,
+.form-title span,
+.form-note,
+.source-pulse,
+.italy-source-strip p,
+.italy-search-heading small,
+.italy-card-index small,
+.italy-card-badges span,
+.italian-title,
+.italy-course-meta small,
+.italy-card-actions small,
+.scholarship-hero-proof span,
+.scholarship-country-filter small,
+.scholarship-status,
+.scholarship-tags span,
+.scholarship-detail-grid li,
+.scholarship-steps li span,
+.scholarship-steps li p,
+.scholarship-card-note,
+.scholarship-source-note span {
+  font-size: .8125rem !important;
+  line-height: 1.55;
+}
+
+.italy-data-card > p,
+.italy-data-card dt,
+.italy-results-toolbar label,
+.italy-pagination p,
+.italy-verification-note p,
+.scholarship-hero-board > p,
+.scholarship-results-toolbar label,
+.scholarship-country-name strong,
+.scholarship-detail-grid h4,
+.scholarship-steps h4,
+.scholarship-method-grid > article > span,
+.scholarship-verified-mark strong,
+.scholarship-deadline strong,
+.scholarship-source-note strong {
+  font-size: .8125rem !important;
+  line-height: 1.55;
+}
+
+.italy-data-card dd,
+.italy-search-heading > p,
+.italy-results-toolbar p,
+.italy-course-meta strong,
+.scholarship-results-toolbar p strong {
+  font-size: .9375rem !important;
+  line-height: 1.6;
+}
+
+.ielts-booking-promise strong,
+.ielts-booking-progress strong,
+.ielts-form-heading > p,
+.ielts-slot-preview strong,
+.ielts-attempt-field label > span,
+.ielts-booking-review strong,
+.ielts-whatsapp-submit strong {
+  font-size: .875rem !important;
+  line-height: 1.5;
+}
+
+.ielts-booking-promise small,
+.ielts-booking-progress small,
+.ielts-slot-preview small,
+.ielts-attempt-field label > small,
+.ielts-booking-review small,
+.ielts-whatsapp-submit small {
+  font-size: .8125rem !important;
+  line-height: 1.5;
+}
+
+.ielts-booking-review button {
+  font-size: .8125rem !important;
+}
+
+.catalogue-view-tabs > button,
+.catalogue-partner-note > a {
+  font-size: .875rem !important;
+  line-height: 1.45;
+}
+
+.catalogue-view-tabs > span,
+.source-confidence strong,
+.official-source-card > strong,
+.official-source-card dd {
+  font-size: .8125rem !important;
+  line-height: 1.55;
+}
+
+.official-source-header > p {
+  font-size: .9375rem !important;
+  line-height: 1.65;
+}
+
+.social-links a,
+.footer-links-column a,
+.footer-contact-column a,
+.footer-contact-column address {
+  font-size: .875rem !important;
+  line-height: 1.65;
+}
+
+.footer-legal p,
+.footer-legal a {
+  font-size: .75rem !important;
+  line-height: 1.65;
+}
+
+@media (max-width: 680px) {
+  .eyebrow,
+  .hero-proof,
+  .hero-proof span,
+  .support-strip span {
+    font-size: .75rem;
+  }
+
+  .destination-flag-card > a,
+  .italy-card-actions a,
+  .scholarship-card-actions > a,
+  .social-links a,
+  .footer-links-column a,
+  .footer-contact-column a,
+  .footer-contact-column address {
+    font-size: .9375rem !important;
+  }
 }
