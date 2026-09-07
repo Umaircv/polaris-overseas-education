@@ -1,10 +1,10 @@
 export const WHATSAPP_URL =
-  "https://wa.me/923416934362?text=Hello%20Polaris%20Overseas%20Education%2C%20I%20would%20like%20a%20free%20counselling%20session.";
+  "https://wa.me/923000756932?text=Hello%20Polaris%20Global%20Education%20Center%2C%20I%20would%20like%20a%20free%20counselling%20session.";
 
 export const IELTS_DEMO_URL = "/book-ielts-demo";
 
 export const TRACKING_WHATSAPP_URL =
-  "https://wa.me/923416934362?text=Hello%20Polaris%20Overseas%20Education%2C%20I%20would%20like%20an%20update%20on%20my%20application.";
+  "https://wa.me/923416934362?text=Hello%20Polaris%20Global%20Education%20Center%2C%20I%20would%20like%20an%20update%20on%20my%20application.";
 
 export const destinations = [
   {
