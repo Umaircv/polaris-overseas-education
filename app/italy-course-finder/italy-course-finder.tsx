@@ -47,7 +47,7 @@ type Sort = "relevance" | "course" | "university" | "city";
 
 const PAGE_SIZE = 20;
 const sourceUrl = "https://www.universitaly.it/en/cerca-corsi";
-const counsellingUrl = "https://wa.me/923416934362?text=Hello%20Polaris%20Overseas%20Education%2C%20I%20would%20like%20help%20shortlisting%20universities%20and%20courses%20in%20Italy.";
+const counsellingUrl = "https://wa.me/923416934362?text=Hello%20Polaris%20Global%20Education%20Center%2C%20I%20would%20like%20help%20shortlisting%20universities%20and%20courses%20in%20Italy.";
 
 function readableQualification(course: Course) {
   if (course.durationYears === 3) return "Bachelor's / first cycle";
@@ -339,7 +339,7 @@ function Select({ label, value, setValue, options, placeholder, optionLabels = {
 
 function ItalyCourseCard({ course }: { course: Course }) {
   const officialUrl = course.programmeUrl || sourceUrl;
-  const message = encodeURIComponent(`Hello Polaris Overseas Education, please verify my eligibility and current admission details for ${course.title} at ${course.university}, Italy (Universitaly course ID ${course.id}).`);
+  const message = encodeURIComponent(`Hello Polaris Global Education Center, please verify my eligibility and current admission details for ${course.title} at ${course.university}, Italy (Universitaly course ID ${course.id}).`);
   return (
     <article className="italy-course-card">
       <div className="italy-card-index"><span>IT</span><small>{course.disciplineCode || "—"}</small></div>
