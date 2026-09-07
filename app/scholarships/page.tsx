@@ -18,7 +18,7 @@ export default function ScholarshipsPortalPage() {
           <p className="eyebrow"><span /> Polaris scholarship finder</p>
           <h1>Funding clarity.<br /><em>One verified route.</em></h1>
           <p>Explore major scholarships for five destinations—then compare eligibility, deadlines, required documents and application steps without jumping between unreliable listings.</p>
-          <div className="scholarship-hero-actions"><a href="#scholarship-results">Explore scholarships <span aria-hidden="true">↓</span></a><a href="https://wa.me/923416934362?text=Hello%20Polaris%20Overseas%20Education%2C%20please%20check%20my%20scholarship%20profile." target="_blank" rel="noreferrer">Free profile check <span aria-hidden="true">↗</span></a></div>
+          <div className="scholarship-hero-actions"><a href="#scholarship-results">Explore scholarships <span aria-hidden="true">↓</span></a><a href="https://wa.me/923416934362?text=Hello%20Polaris%20Global%20Education%20Center%2C%20please%20check%20my%20scholarship%20profile." target="_blank" rel="noreferrer">Free profile check <span aria-hidden="true">↗</span></a></div>
           <div className="scholarship-hero-proof"><span><b>{scholarships.length}</b> curated opportunities</span><span><b>5</b> study destinations</span><span><b>Official</b> source links</span></div>
         </div>
         <aside className="scholarship-hero-board" aria-label="Scholarship finder summary">
