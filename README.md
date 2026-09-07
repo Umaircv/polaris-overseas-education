@@ -1,4 +1,4 @@
-# Polaris Overseas Education
+# Polaris Global Education Center
 
 Production website and installable PWA for [polarisoverseasedu.com](https://polarisoverseasedu.com).
 
