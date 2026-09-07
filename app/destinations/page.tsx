@@ -4,7 +4,7 @@ import { destinations } from "../site-data";
 
 export const metadata: Metadata = {
   title: "Study Destinations",
-  description: "Explore study opportunities in Italy, France, Germany, Türkiye and China with Polaris Overseas Education.",
+  description: "Explore study opportunities in Italy, France, Germany, Türkiye and China with Polaris Global Education Center.",
 };
 
 const destinationHighlights: Record<string, string[]> = {
