@@ -3,7 +3,7 @@ import { ServicePage } from "../service-page";
 
 export const metadata: Metadata = {
   title: "IELTS Preparation",
-  description: "IELTS preparation, English language and spoken English training with a free demo class at Polaris Overseas Education.",
+  description: "IELTS preparation, English language and spoken English training with a free demo class at Polaris Global Education Center.",
 };
 
 export default function IeltsPage() {
