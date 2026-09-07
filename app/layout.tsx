@@ -14,31 +14,31 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://polarisoverseasedu.com"),
   title: {
-    default: "Polaris Overseas Education | Your North Star to Global Education",
-    template: "%s | Polaris Overseas Education",
+    default: "Polaris Global Education Center | Your North Star to Global Education",
+    template: "%s | Polaris Global Education Center",
   },
   description:
-    "Study abroad counselling, university admissions, scholarships, student visa assistance, IELTS and language training from Polaris Overseas Education in Lahore.",
-  applicationName: "Polaris Overseas Education",
+    "Study abroad counselling, university admissions, scholarships, student visa assistance, IELTS and language training from Polaris Global Education Center in Lahore.",
+  applicationName: "Polaris Global Education Center",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Polaris Education",
+    title: "Polaris Global",
   },
   formatDetection: { telephone: false },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://polarisoverseasedu.com",
-    siteName: "Polaris Overseas Education",
-    title: "Polaris Overseas Education | Find Your Course",
+    siteName: "Polaris Global Education Center",
+    title: "Polaris Global Education Center | Find Your Course",
     description:
       "Personalised guidance for international education, university admissions, scholarships, student visas and language training.",
-    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Polaris Overseas Education — Find Your Course. Follow Your North Star." }],
+    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Polaris Global Education Center — Find Your Course. Follow Your North Star." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Polaris Overseas Education | Find Your Course",
+    title: "Polaris Global Education Center | Find Your Course",
     description:
       "Personalised guidance for international education, university admissions, scholarships, student visas and language training.",
     images: ["/og.png"],
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="application-name" content="Polaris Education" />
+        <meta name="application-name" content="Polaris Global Education Center" />
       </head>
       <body>
         {children}
