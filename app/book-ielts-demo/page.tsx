@@ -4,7 +4,7 @@ import IeltsBookingForm from "./ielts-booking-form";
 
 export const metadata: Metadata = {
   title: "Book a Free IELTS Demo",
-  description: "Choose an IELTS demo class date and time, share your preparation goals and confirm your booking with Polaris Overseas Education on WhatsApp.",
+  description: "Choose an IELTS demo class date and time, share your preparation goals and confirm your booking with Polaris Global Education Center on WhatsApp.",
 };
 
 export default function BookIeltsDemoPage() {
@@ -30,4 +30,3 @@ export default function BookIeltsDemoPage() {
     </InnerPage>
   );
 }
-
