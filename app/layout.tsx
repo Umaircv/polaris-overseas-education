@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/lora";
+import "@fontsource-variable/manrope";
 import "./globals.css";
 import PwaRegister from "./pwa-register";
 
