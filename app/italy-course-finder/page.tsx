@@ -3,7 +3,7 @@ import { SiteFooter, SiteHeader, WhatsAppFloat } from "../site-shell";
 import ItalyCourseFinder from "./italy-course-finder";
 
 export const metadata: Metadata = {
-  title: "Italy Course Finder | Polaris Overseas Education",
+  title: "Italy Course Finder",
   description: "Search Italy's current university programmes by discipline, qualification, language, city, university type, access and delivery mode using official MUR data.",
   alternates: { canonical: "/italy-course-finder" },
   openGraph: {
