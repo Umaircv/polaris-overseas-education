@@ -101,14 +101,14 @@ export default function ScholarshipFinder() {
 
       <div className="scholarship-source-note">
         <div><ShieldIcon /><p><strong>Accuracy before applications.</strong><span>Dates, benefits and criteria can change without notice. This portal links to the scholarship owner—not a copied application form. Always complete a final check on the official source.</span></p></div>
-        <a href="https://wa.me/923416934362?text=Hello%20Polaris%20Overseas%20Education%2C%20please%20help%20me%20build%20a%20verified%20scholarship%20shortlist." target="_blank" rel="noreferrer">Request a verified shortlist <span aria-hidden="true">↗</span></a>
+        <a href="https://wa.me/923416934362?text=Hello%20Polaris%20Global%20Education%20Center%2C%20please%20help%20me%20build%20a%20verified%20scholarship%20shortlist." target="_blank" rel="noreferrer">Request a verified shortlist <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   );
 }
 
 function ScholarshipCard({ item }: { item: Scholarship }) {
-  const message = encodeURIComponent(`Hello Polaris Overseas Education, please check my eligibility for ${item.name} in ${item.country}.`);
+  const message = encodeURIComponent(`Hello Polaris Global Education Center, please check my eligibility for ${item.name} in ${item.country}.`);
   return (
     <article className="scholarship-card">
       <div className="scholarship-card-head">
