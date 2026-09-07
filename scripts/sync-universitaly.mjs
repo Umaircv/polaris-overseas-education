@@ -130,7 +130,7 @@ async function fetchWithRetry(url, responseType = "json") {
   let lastError;
   for (let attempt = 0; attempt < RETRIES; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { "User-Agent": "Polaris Overseas Education course catalogue sync" } });
+      const response = await fetch(url, { headers: { "User-Agent": "Polaris Global Education Center course catalogue sync" } });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
       return responseType === "text" ? response.text() : response.json();
     } catch (error) {
