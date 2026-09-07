@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Polaris Course Finder",
     description: "Open live official programme catalogues across five supported study destinations.",
     url: "https://polarisoverseasedu.com/course-finder",
-    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Polaris Overseas Education Course Finder" }],
+    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Polaris Global Education Center Course Finder" }],
   },
 };
 
@@ -20,7 +20,7 @@ export default function CourseFinderPage() {
       <SiteHeader />
       <section className="finder-page-hero">
         <div>
-          <p className="eyebrow"><span /> Live sources · Verified guidance</p>
+          <p className="eyebrow"><span /> Verified sources and expert guidance</p>
           <h1>Find programmes with confidence.</h1>
           <p>Search all five destinations through their authoritative national catalogues, then ask Polaris to verify eligibility, deadlines and the best-fit route for your profile.</p>
           <span className="catalogue-note">Five countries · Official catalogues · Polaris shortlists</span>
