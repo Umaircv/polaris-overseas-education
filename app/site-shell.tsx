@@ -18,11 +18,11 @@ const serviceItems = [
 
 export function Brand({ footer = false }: { footer?: boolean }) {
   return (
-    <a className={`brand-lockup${footer ? " footer-brand" : ""}`} href="/" aria-label="Polaris Overseas Education home">
+    <a className={`brand-lockup${footer ? " footer-brand" : ""}`} href="/" aria-label="Polaris Global Education Center home">
       <img src="/polaris/logo-optimized.png" alt="" width="60" height="60" loading={footer ? "lazy" : "eager"} decoding="async" />
       <span>
         <strong>POLARIS</strong>
-        <small>OVERSEAS EDUCATION</small>
+        <small>GLOBAL EDUCATION CENTER</small>
       </span>
     </a>
   );
@@ -44,8 +44,8 @@ export function SiteHeader() {
         </nav>
         <div className="header-actions">
           <div className="header-phones" aria-label="Call Polaris">
-            <a href="tel:+923416934362"><span aria-hidden="true">☎</span> +92 341 6934362</a>
             <a href="tel:+923000756932"><span aria-hidden="true">☎</span> +92 300 0756932</a>
+            <a href="tel:+923416934362"><span aria-hidden="true">☎</span> +92 341 6934362</a>
           </div>
           <a className="header-cta" href={WHATSAPP_URL} target="_blank" rel="noreferrer">Free consultation</a>
         </div>
@@ -60,8 +60,8 @@ export function SiteHeader() {
               </div>
             </details>
             {navItems.slice(1).map(([label, href]) => <a key={label} href={href}>{label}</a>)}
-            <a href="tel:+923416934362">Call +92 341 6934362</a>
             <a href="tel:+923000756932">Call +92 300 0756932</a>
+            <a href="tel:+923416934362">Call +92 341 6934362</a>
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Free consultation</a>
           </div>
         </details>
@@ -106,14 +106,14 @@ export function SiteFooter() {
         </div>
         <div className="footer-contact-column">
           <strong>Contact</strong>
-          <a href="tel:+923416934362">+92 341 6934362</a>
           <a href="tel:+923000756932">+92 300 0756932</a>
+          <a href="tel:+923416934362">+92 341 6934362</a>
           <a href="mailto:contact@polarisoverseasedu.com">contact@polarisoverseasedu.com</a>
           <address>228C PIA Main Boulevard, Block C, PIA Housing Scheme, Lahore 54770</address>
         </div>
       </div>
       <div className="footer-legal">
-        <p>© 2026 Polaris Overseas Education. All rights reserved.</p>
+        <p>© 2026 Polaris Global Education Center. All rights reserved.</p>
         <p>Admissions, scholarships and visas remain subject to the decisions of relevant institutions and authorities. Polaris is not a university or degree-awarding institution.</p>
         <a href="https://polarisoverseasedu.com">polarisoverseasedu.com</a>
       </div>
