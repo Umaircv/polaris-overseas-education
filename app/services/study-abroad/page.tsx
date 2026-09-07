@@ -3,7 +3,7 @@ import { ServicePage } from "../service-page";
 
 export const metadata: Metadata = {
   title: "Study Abroad Counselling",
-  description: "Personalised overseas education counselling, university selection, application and student visa support from Polaris Overseas Education.",
+  description: "Personalised overseas education counselling, university selection, application and student visa support from Polaris Global Education Center.",
 };
 
 export default function StudyAbroadPage() {
@@ -33,4 +33,3 @@ export default function StudyAbroadPage() {
     />
   );
 }
-
