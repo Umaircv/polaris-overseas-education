@@ -162,7 +162,7 @@ export default function CourseFinder() {
 
           <div className="catalogue-partner-note">
             <div><span aria-hidden="true">✦</span><div><strong>Need one shortlist instead of five databases?</strong><p>Send your qualification, subject and budget. Polaris will verify suitable programmes and return a focused shortlist.</p></div></div>
-            <a href={`https://wa.me/923416934362?text=${encodeURIComponent(`Hello Polaris Overseas Education, please prepare a verified programme shortlist. My preference is ${country || "any destination"}, ${level || "any level"}, ${discipline || "any subject"}.`)}`} target="_blank" rel="noreferrer">Request verified shortlist ↗</a>
+            <a href={`https://wa.me/923416934362?text=${encodeURIComponent(`Hello Polaris Global Education Center, please prepare a verified programme shortlist. My preference is ${country || "any destination"}, ${level || "any level"}, ${discipline || "any subject"}.`)}`} target="_blank" rel="noreferrer">Request verified shortlist ↗</a>
           </div>
         </div>
       )}
@@ -232,7 +232,7 @@ export default function CourseFinder() {
 }
 
 function OfficialSourceCard({ source, level, discipline }: { source: typeof officialCatalogues[number]; level: string; discipline: string }) {
-  const message = encodeURIComponent(`Hello Polaris Overseas Education, please help me search ${source.country}. I am interested in ${level || "any level"}, ${discipline || "any subject"}.`);
+  const message = encodeURIComponent(`Hello Polaris Global Education Center, please help me search ${source.country}. I am interested in ${level || "any level"}, ${discipline || "any subject"}.`);
   return (
     <article className="official-source-card">
       <div className="source-card-top"><img src={source.flagImage} alt={`${source.country} national flag`} /><small>OFFICIAL SOURCE</small></div>
@@ -250,7 +250,7 @@ function Filter({ label, value, onChange, options }: { label: string; value: str
 }
 
 function CourseCard({ course, selected, onCompare }: { course: Course; selected: boolean; onCompare: (id: number) => void }) {
-  const message = encodeURIComponent(`Hello Polaris Overseas Education, please verify current details and my eligibility for ${course.title} at ${course.university}, ${course.country}.`);
+  const message = encodeURIComponent(`Hello Polaris Global Education Center, please verify current details and my eligibility for ${course.title} at ${course.university}, ${course.country}.`);
   return (
     <article className="course-card">
       <div>
