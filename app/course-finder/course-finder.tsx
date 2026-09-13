@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { courses, destinations, type Course } from "../site-data";
 
 type View = "live" | "shortlist" | "scholarships";
+type ShortlistFilters = {
+  country: string;
+  level: string;
+  discipline: string;
+  intake: string;
+};
 
 const officialCatalogues = [
   {
@@ -58,11 +64,11 @@ const levels = ["Bachelor's", "Master's", "PhD", "Foundation"];
 const disciplines = ["Computer & IT", "Business & Management", "Engineering & Technology", "Health & Medicine", "Arts & Humanities"];
 
 export default function CourseFinder() {
-  const [query, setQuery] = useState("");
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [discipline, setDiscipline] = useState("");
   const [intake, setIntake] = useState("");
+  const [appliedFilters, setAppliedFilters] = useState<ShortlistFilters | null>(null);
   const [sort, setSort] = useState("recommended");
   const [view, setView] = useState<View>("live");
   const [compare, setCompare] = useState<number[]>([]);
@@ -73,25 +79,19 @@ export default function CourseFinder() {
     setCountry(params.get("country") || "");
     setLevel(params.get("level") || "");
     setDiscipline(params.get("discipline") || "");
+    setIntake(params.get("intake") || "");
     const requestedView = params.get("view");
     if (requestedView === "scholarships") setView("scholarships");
     if (requestedView === "shortlist") setView("shortlist");
   }, []);
 
-  const filteredSources = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    return officialCatalogues.filter((source) => {
-      const matchesCountry = !country || source.country === country;
-      const matchesText = !term || `${source.country} ${source.source} ${source.owner} ${source.coverage}`.toLowerCase().includes(term);
-      return matchesCountry && matchesText;
-    });
-  }, [country, query]);
-
   const filtered = useMemo(() => {
-    const term = query.trim().toLowerCase();
+    if (!appliedFilters) return [];
     const result = courses.filter((course) => {
-      const matchesText = !term || `${course.title} ${course.university} ${course.city} ${course.country}`.toLowerCase().includes(term);
-      return matchesText && (!country || course.country === country) && (!level || course.level === level) && (!discipline || course.discipline === discipline) && (!intake || course.intake === intake);
+      return (!appliedFilters.country || course.country === appliedFilters.country)
+        && (!appliedFilters.level || course.level === appliedFilters.level)
+        && (!appliedFilters.discipline || course.discipline === appliedFilters.discipline)
+        && (!appliedFilters.intake || course.intake === appliedFilters.intake);
     });
     return [...result].sort((a, b) => {
       if (sort === "university") return a.university.localeCompare(b.university);
@@ -99,24 +99,26 @@ export default function CourseFinder() {
       if (sort === "duration") return Number.parseInt(a.duration) - Number.parseInt(b.duration);
       return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
     });
-  }, [query, country, level, discipline, intake, sort]);
+  }, [appliedFilters, sort]);
 
   const comparedCourses = compare.map((id) => courses.find((course) => course.id === id)).filter(Boolean) as Course[];
-  const focus = [level, discipline].filter(Boolean).join(" · ") || "All study levels and subjects";
-
   function toggleCompare(id: number) {
     setShowComparison(false);
     setCompare((current) => current.includes(id) ? current.filter((item) => item !== id) : current.length < 3 ? [...current, id] : current);
   }
 
-  function resetFilters() {
-    setQuery("");
-    setCountry("");
-    setLevel("");
-    setDiscipline("");
-    setIntake("");
-    setSort("recommended");
-    window.history.replaceState({}, "", "/course-finder");
+  function searchShortlist(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setAppliedFilters({ country, level, discipline, intake });
+    setCompare([]);
+    setShowComparison(false);
+
+    const params = new URLSearchParams({ view: "shortlist" });
+    if (country) params.set("country", country);
+    if (level) params.set("level", level);
+    if (discipline) params.set("discipline", discipline);
+    if (intake) params.set("intake", intake);
+    window.history.replaceState({}, "", `/course-finder?${params.toString()}`);
   }
 
   return (
@@ -128,69 +130,63 @@ export default function CourseFinder() {
         <span>Application matching <small>coming soon</small></span>
       </div>
 
-      {view !== "scholarships" && (
-        <div className="catalogue-searchbar">
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={view === "live" ? "Search country or official catalogue" : "Search course, university, city or country"} aria-label="Search course finder" />
-          <button type="button">⌕ Search</button>
-        </div>
-      )}
-
       {view === "live" && (
         <div className="live-catalogue-view">
-          <div className="live-filter-panel">
-            <Filter label="Destination" value={country} onChange={setCountry} options={countries} />
-            <Filter label="Qualification" value={level} onChange={setLevel} options={levels} />
-            <Filter label="Discipline" value={discipline} onChange={setDiscipline} options={disciplines} />
-            <button type="button" onClick={resetFilters}>Reset search</button>
-          </div>
-
           <div className="source-confidence">
             <span aria-hidden="true">✓</span>
             <div><strong>Live information from authoritative catalogues</strong><small>Programmes, deadlines and requirements can change. Final details open on the official national source for verification.</small></div>
           </div>
 
           <div className="official-source-header">
-            <div><p className="eyebrow dark"><span /> Official programme databases</p><h2>{country ? `Explore ${country}` : "All five destinations"}</h2></div>
-            <p>Your focus: <strong>{focus}</strong></p>
+            <div><p className="eyebrow dark"><span /> Official programme databases</p><h2>All five destinations</h2></div>
+            <p><strong>Five countries</strong> · five official catalogues</p>
           </div>
 
-          {filteredSources.length ? (
-            <div className="official-source-grid">
-              {filteredSources.map((source) => <OfficialSourceCard key={source.country} source={source} level={level} discipline={discipline} />)}
-            </div>
-          ) : <NoResults onReset={resetFilters} />}
+          <div className="official-source-grid">
+            {officialCatalogues.map((source) => <OfficialSourceCard key={source.country} source={source} />)}
+          </div>
 
           <div className="catalogue-partner-note">
             <div><span aria-hidden="true">✦</span><div><strong>Need one shortlist instead of five databases?</strong><p>Send your qualification, subject and budget. Polaris will verify suitable programmes and return a focused shortlist.</p></div></div>
-            <a href={`https://wa.me/923416934362?text=${encodeURIComponent(`Hello Polaris Global Education Center, please prepare a verified programme shortlist. My preference is ${country || "any destination"}, ${level || "any level"}, ${discipline || "any subject"}.`)}`} target="_blank" rel="noreferrer">Request verified shortlist ↗</a>
+            <a href={`https://wa.me/923416934362?text=${encodeURIComponent("Hello Polaris Global Education Center, please prepare a verified programme shortlist for me.")}`} target="_blank" rel="noreferrer">Request verified shortlist ↗</a>
           </div>
         </div>
       )}
 
       {view === "shortlist" && (
         <div className="catalogue-layout">
-          <aside className="catalogue-filters">
+          <form className="catalogue-filters" onSubmit={searchShortlist}>
             <h2>Refine shortlist</h2>
             <Filter label="Destination" value={country} onChange={setCountry} options={countries} />
             <Filter label="Qualification" value={level} onChange={setLevel} options={levels} />
             <Filter label="Discipline" value={discipline} onChange={setDiscipline} options={disciplines} />
             <Filter label="Intake" value={intake} onChange={setIntake} options={["September", "October", "January"]} />
-            <button type="button" onClick={resetFilters}>Reset all filters</button>
-          </aside>
+            <button className="shortlist-search-button" type="submit">Search</button>
+          </form>
 
           <div className="catalogue-results">
             <div className="shortlist-disclaimer"><span>POLARIS SHORTLIST</span><p>Curated starting points, reviewed August 2026. Confirm current intake, fees and eligibility before applying.</p></div>
-            <div className="catalogue-results-header">
-              <p><strong>{filtered.length}</strong> programme examples found</p>
-              <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort results">
-                <option value="recommended">Recommended</option>
-                <option value="university">University A–Z</option>
-                <option value="country">Country A–Z</option>
-                <option value="duration">Shortest duration</option>
-              </select>
-            </div>
+            {!appliedFilters ? (
+              <div className="shortlist-start" aria-live="polite">
+                <span aria-hidden="true">⌕</span>
+                <h3>Choose your preferences.</h3>
+                <p>Select the filters that matter to you, then press <strong>Search</strong> to see your shortlist.</p>
+              </div>
+            ) : (
+              <>
+                <div className="catalogue-results-header">
+                  <p><strong>{filtered.length}</strong> programme examples found</p>
+                  <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort results">
+                    <option value="recommended">Recommended</option>
+                    <option value="university">University A–Z</option>
+                    <option value="country">Country A–Z</option>
+                    <option value="duration">Shortest duration</option>
+                  </select>
+                </div>
 
-            {filtered.length ? <div className="course-list">{filtered.map((course) => <CourseCard key={course.id} course={course} selected={compare.includes(course.id)} onCompare={toggleCompare} />)}</div> : <NoResults onReset={resetFilters} />}
+                {filtered.length ? <div className="course-list">{filtered.map((course) => <CourseCard key={course.id} course={course} selected={compare.includes(course.id)} onCompare={toggleCompare} />)}</div> : <NoResults />}
+              </>
+            )}
 
             {showComparison && comparedCourses.length > 1 && (
               <div className="comparison-panel">
@@ -231,8 +227,8 @@ export default function CourseFinder() {
   );
 }
 
-function OfficialSourceCard({ source, level, discipline }: { source: typeof officialCatalogues[number]; level: string; discipline: string }) {
-  const message = encodeURIComponent(`Hello Polaris Global Education Center, please help me search ${source.country}. I am interested in ${level || "any level"}, ${discipline || "any subject"}.`);
+function OfficialSourceCard({ source }: { source: typeof officialCatalogues[number] }) {
+  const message = encodeURIComponent(`Hello Polaris Global Education Center, please help me search programmes in ${source.country}.`);
   return (
     <article className="official-source-card">
       <div className="source-card-top"><img src={source.flagImage} alt={`${source.country} national flag`} /><small>OFFICIAL SOURCE</small></div>
@@ -263,6 +259,6 @@ function CourseCard({ course, selected, onCompare }: { course: Course; selected:
   );
 }
 
-function NoResults({ onReset }: { onReset: () => void }) {
-  return <div className="no-results"><h3>No matching results.</h3><p>Try widening your filters or ask a Polaris counsellor for a personalised search.</p><button className="button button-dark" type="button" onClick={onReset}>Reset filters</button></div>;
+function NoResults() {
+  return <div className="no-results"><h3>No matching results.</h3><p>Change one or more filters and press Search again, or ask a Polaris counsellor for a personalised search.</p></div>;
 }
