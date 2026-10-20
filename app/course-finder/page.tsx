@@ -23,7 +23,7 @@ export default function CourseFinderPage() {
           <p className="eyebrow"><span /> Verified sources and expert guidance</p>
           <h1>Find programmes with confidence.</h1>
           <p>Search all five destinations through their authoritative national catalogues, then ask Polaris to verify eligibility, deadlines and the best-fit route for your profile.</p>
-          <span className="catalogue-note">Five countries · Official catalogues · Polaris shortlists</span>
+          <span className="catalogue-note">Five countries · Five official catalogues</span>
         </div>
       </section>
       <CourseFinder />

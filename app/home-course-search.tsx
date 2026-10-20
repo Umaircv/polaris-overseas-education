@@ -14,15 +14,13 @@ export default function HomeCourseSearch() {
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const params = new URLSearchParams();
-    const discipline = String(data.get("discipline") || "");
-    const level = String(data.get("level") || "");
     const country = String(data.get("country") || "");
-    if (discipline) params.set("discipline", discipline);
-    if (level) params.set("level", level);
-    if (country) params.set("country", country);
-    params.set("view", tab.toLowerCase());
-    window.location.href = country === "Italy" ? "/italy-course-finder" : `/course-finder?${params.toString()}`;
+    if (tab === "Scholarships") {
+      window.location.href = country ? `/scholarships?country=${encodeURIComponent(country)}` : "/scholarships";
+      return;
+    }
+    const countryAnchor = country ? `#${country.toLowerCase().replace("ü", "u")}` : "";
+    window.location.href = `/course-finder${countryAnchor}`;
   }
 
   return (

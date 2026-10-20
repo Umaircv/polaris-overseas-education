@@ -34,7 +34,7 @@ export default function DestinationsPage() {
               <h2>{destination.country}</h2>
               <p>{destination.note}</p>
               <ul>{destinationHighlights[destination.country].map((item) => <li key={item}>{item}</li>)}</ul>
-              <a href={destination.country === "Italy" ? "/italy-course-finder" : `/course-finder?country=${encodeURIComponent(destination.country)}`}>Find courses in {destination.country} <span aria-hidden="true">↗</span></a>
+              <a href={`/course-finder#${destination.country.toLowerCase().replace("ü", "u")}`}>Open official source for {destination.country} <span aria-hidden="true">↗</span></a>
             </article>
           ))}
         </div>

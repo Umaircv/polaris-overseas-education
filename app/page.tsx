@@ -157,7 +157,7 @@ export default function Home() {
               <small>{destination.code} · STUDY IN</small>
               <h3>{destination.country}</h3>
               <p>{destination.note}</p>
-              <a href={destination.country === "Italy" ? "/italy-course-finder" : `/course-finder?country=${encodeURIComponent(destination.country)}`} aria-label={`Find courses in ${destination.country}`}>Explore country <span aria-hidden="true">↗</span></a>
+              <a href={`/course-finder#${destination.country.toLowerCase().replace("ü", "u")}`} aria-label={`Find official courses in ${destination.country}`}>Explore official source <span aria-hidden="true">↗</span></a>
             </article>
           ))}
         </div>
@@ -199,10 +199,10 @@ export default function Home() {
         <div className="finder-feature-copy">
           <p className="eyebrow dark"><span /> Polaris Course Finder</p>
           <h2>Search smarter before you apply.</h2>
-          <p>Start with Polaris shortlists, then continue to the live national programme catalogue for each destination. That keeps university and programme information current and verifiable.</p>
+          <p>Search programmes directly through the official national catalogue for each destination, then ask Polaris to verify requirements and guide your application.</p>
           <ul>
             <li><span>✓</span> Five authoritative national catalogues</li>
-            <li><span>✓</span> Curated Polaris programme shortlists</li>
+            <li><span>✓</span> Direct links to official programme sources</li>
             <li><span>✓</span> Eligibility checks through WhatsApp</li>
           </ul>
           <a className="button button-dark" href="/course-finder">Open Course Finder <span>↗</span></a>
