@@ -1,6 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { destinations } from "./site-data";
 
 export default function EnquiryForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -53,11 +54,7 @@ export default function EnquiryForm() {
           Destination
           <select name="destination" defaultValue="">
             <option value="" disabled>Select country</option>
-            <option>Italy</option>
-            <option>France</option>
-            <option>Germany</option>
-            <option>Türkiye</option>
-            <option>China</option>
+            {destinations.map((destination) => <option key={destination.country}>{destination.country}</option>)}
             <option>Not decided</option>
           </select>
         </label>

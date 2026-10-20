@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { campaignName } from "../qr-campaigns";
+import { destinations } from "../site-data";
 
 const primaryNumber = "923000756932";
 
@@ -148,7 +149,7 @@ export default function SmartQrHub() {
         <h1>Choose your next step.</h1>
         <div className="smart-qr-intro-row">
           <span>{campaignName(campaign)}</span>
-          <small>Verified guidance for five study destinations</small>
+          <small>Verified guidance for ten study destinations</small>
         </div>
       </section>
 
@@ -180,7 +181,7 @@ export default function SmartQrHub() {
             </select>
           </label>
           <label>Preferred country
-            <select name="country" defaultValue="Not decided"><option>Not decided</option><option>Italy</option><option>France</option><option>Germany</option><option>Türkiye</option><option>China</option></select>
+            <select name="country" defaultValue="Not decided"><option>Not decided</option>{destinations.map((destination) => <option key={destination.country}>{destination.country}</option>)}</select>
           </label>
           <label>Study level
             <select name="studyLevel" defaultValue="Not specified"><option>Not specified</option><option>Foundation</option><option>Bachelor&apos;s</option><option>Master&apos;s</option><option>PhD</option><option>Language course</option></select>

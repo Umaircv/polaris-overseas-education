@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { scholarshipCountries, scholarships, type Scholarship } from "./scholarship-data";
 
 const levels = ["Associate", "Bachelor's", "Master's", "PhD", "Research", "Language"];
-const fundingTypes = ["Fully funded", "Tuition + stipend", "Tuition waiver", "Needs-based"];
+const fundingTypes = ["Fully funded", "Tuition + stipend", "Tuition waiver", "Needs-based", "Varies"];
 
 export default function ScholarshipFinder() {
   const [country, setCountry] = useState("");
@@ -58,7 +58,7 @@ export default function ScholarshipFinder() {
           <h2 id="scholarship-finder-title">Find your scholarship route.</h2>
           <p>Filter major current and upcoming opportunities. Open any card for eligibility, documents, benefits and application steps.</p>
         </div>
-        <div className="scholarship-verified-mark"><span aria-hidden="true">✓</span><div><strong>Source checked</strong><small>23 August 2026</small></div></div>
+        <div className="scholarship-verified-mark"><span aria-hidden="true">✓</span><div><strong>Source checked</strong><small>20 October 2026</small></div></div>
       </div>
 
       <div className="scholarship-country-filter" aria-label="Filter scholarships by country">
@@ -82,12 +82,12 @@ export default function ScholarshipFinder() {
         </label>
         <ScholarshipSelect label="Study level" value={level} onChange={setLevel} options={levels} />
         <ScholarshipSelect label="Funding" value={funding} onChange={setFunding} options={fundingTypes} />
-        <ScholarshipSelect label="Application status" value={status} onChange={setStatus} options={["Open", "Closing soon", "Coming soon"]} />
+        <ScholarshipSelect label="Application status" value={status} onChange={setStatus} options={["Open", "Closing soon", "Coming soon", "Closed"]} />
         <button className="scholarship-reset" type="button" onClick={reset}>Reset all</button>
       </div>
 
       <div className="scholarship-results-toolbar">
-        <div><span>{results.length}</span><p><strong>{country || "Five countries"}</strong><small>current and upcoming records</small></p></div>
+        <div><span>{results.length}</span><p><strong>{country || "Ten countries"}</strong><small>current, upcoming and recently closed records</small></p></div>
         <label>Sort by<select value={sort} onChange={(event) => setSort(event.target.value)}><option value="deadline">Earliest deadline</option><option value="status">Application status</option><option value="country">Country A–Z</option><option value="name">Scholarship A–Z</option></select></label>
       </div>
 
@@ -154,10 +154,11 @@ function ScholarshipSelect({ label, value, onChange, options }: { label: string;
 }
 
 function statusWeight(status: Scholarship["status"]) {
-  return status === "Closing soon" ? 0 : status === "Open" ? 1 : 2;
+  return status === "Closing soon" ? 0 : status === "Open" ? 1 : status === "Coming soon" ? 2 : 3;
 }
 
 function deadlineWeight(item: Scholarship) {
+  if (item.status === "Closed") return Number.MAX_SAFE_INTEGER;
   return item.deadlineISO ? new Date(`${item.deadlineISO}T12:00:00Z`).getTime() : Number.MAX_SAFE_INTEGER;
 }
 

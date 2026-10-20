@@ -1,4 +1,4 @@
-import { WHATSAPP_URL } from "./site-data";
+import { countrySlug, destinations, WHATSAPP_URL } from "./site-data";
 
 const navItems = [
   ["Home", "/"],
@@ -98,11 +98,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-links-column">
           <strong>Destinations</strong>
-          <a href="/italy-course-finder">Study in Italy</a>
-          <a href="/course-finder?country=France">Study in France</a>
-          <a href="/course-finder?country=Germany">Study in Germany</a>
-          <a href="/course-finder?country=Türkiye">Study in Türkiye</a>
-          <a href="/course-finder?country=China">Study in China</a>
+          {destinations.map((destination) => <a key={destination.country} href={`/course-finder#${countrySlug(destination.country)}`}>Study in {destination.country}</a>)}
         </div>
         <div className="footer-contact-column">
           <strong>Contact</strong>

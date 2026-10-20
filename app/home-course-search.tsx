@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { countrySlug, destinations } from "./site-data";
 
 const tabCopy = {
   Courses: ["Select discipline", "Select qualification", "Select destination"],
@@ -19,7 +20,7 @@ export default function HomeCourseSearch() {
       window.location.href = country ? `/scholarships?country=${encodeURIComponent(country)}` : "/scholarships";
       return;
     }
-    const countryAnchor = country ? `#${country.toLowerCase().replace("ü", "u")}` : "";
+    const countryAnchor = country ? `#${countrySlug(country)}` : "";
     window.location.href = `/course-finder${countryAnchor}`;
   }
 
@@ -59,11 +60,7 @@ export default function HomeCourseSearch() {
           <span>{tabCopy[tab][2]}</span>
           <select name="country" defaultValue="">
             <option value="">All destinations</option>
-            <option>Italy</option>
-            <option>France</option>
-            <option>Germany</option>
-            <option>Türkiye</option>
-            <option>China</option>
+            {destinations.map((destination) => <option key={destination.country}>{destination.country}</option>)}
           </select>
         </label>
         <button type="submit"><span aria-hidden="true">⌕</span> Search</button>

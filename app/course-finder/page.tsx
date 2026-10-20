@@ -4,11 +4,11 @@ import CourseFinder from "./course-finder";
 
 export const metadata: Metadata = {
   title: "Course Finder",
-  description: "Search authoritative national programme catalogues and explore verified study options across Italy, France, Germany, Türkiye and China.",
+  description: "Search official national programme catalogues across ten Polaris study destinations, including Sweden, Austria, Cyprus, Malaysia and Finland.",
   alternates: { canonical: "/course-finder" },
   openGraph: {
     title: "Polaris Course Finder",
-    description: "Open live official programme catalogues across five supported study destinations.",
+    description: "Open live official programme catalogues across ten supported study destinations.",
     url: "https://polarisoverseasedu.com/course-finder",
     images: [{ url: "/og.png", width: 1731, height: 909, alt: "Polaris Global Education Center Course Finder" }],
   },
@@ -22,8 +22,8 @@ export default function CourseFinderPage() {
         <div>
           <p className="eyebrow"><span /> Verified sources and expert guidance</p>
           <h1>Find programmes with confidence.</h1>
-          <p>Search all five destinations through their authoritative national catalogues, then ask Polaris to verify eligibility, deadlines and the best-fit route for your profile.</p>
-          <span className="catalogue-note">Five countries · Five official catalogues</span>
+          <p>Search all ten destinations through authoritative official catalogues, then ask Polaris to verify eligibility, deadlines and the best-fit route for your profile.</p>
+          <span className="catalogue-note">Ten countries · Ten official catalogues</span>
         </div>
       </section>
       <CourseFinder />

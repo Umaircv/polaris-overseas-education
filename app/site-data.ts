@@ -52,7 +52,109 @@ export const destinations = [
     landmark: "Beijing · Great Wall",
     note: "Modern campuses, varied programmes and developing scholarship routes.",
   },
+  {
+    country: "Sweden",
+    code: "SE",
+    flag: "🇸🇪",
+    flagImage: "/polaris/flags/se.png",
+    image: "/polaris/landmarks/sweden.webp",
+    landmark: "Stockholm · Gamla Stan",
+    note: "Innovation-led education, English-taught degrees and a strong student culture.",
+  },
+  {
+    country: "Austria",
+    code: "AT",
+    flag: "🇦🇹",
+    flagImage: "/polaris/flags/at.png",
+    image: "/polaris/landmarks/austria.webp",
+    landmark: "Vienna · Schönbrunn Palace",
+    note: "High-quality universities, central European access and diverse programme routes.",
+  },
+  {
+    country: "Cyprus",
+    code: "CY",
+    flag: "🇨🇾",
+    flagImage: "/polaris/flags/cy.png",
+    image: "/polaris/landmarks/cyprus.webp",
+    landmark: "Paphos · Harbour",
+    note: "English-friendly study options, Mediterranean life and accredited degree routes.",
+  },
+  {
+    country: "Malaysia",
+    code: "MY",
+    flag: "🇲🇾",
+    flagImage: "/polaris/flags/my.png",
+    image: "/polaris/landmarks/malaysia.webp",
+    landmark: "Kuala Lumpur · Petronas Towers",
+    note: "International campuses, broad English-medium options and competitive study costs.",
+  },
+  {
+    country: "Finland",
+    code: "FI",
+    flag: "🇫🇮",
+    flagImage: "/polaris/flags/fi.png",
+    image: "/polaris/landmarks/finland.webp",
+    landmark: "Helsinki · Cathedral",
+    note: "Research-driven learning, student-centred teaching and modern degree programmes.",
+  },
 ];
+
+export function countrySlug(country: string) {
+  return country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export const officialCatalogues = [
+  {
+    country: "Italy", flagImage: "/polaris/flags/it.png", source: "Universitaly",
+    owner: "Italian Ministry of University and Research", coverage: "National universities, institutions and degree programmes",
+    stat: "Official national catalogue", url: "https://www.universitaly.it/en/cerca-corsi",
+  },
+  {
+    country: "France", flagImage: "/polaris/flags/fr.png", source: "Campus France",
+    owner: "France's national higher-education agency", coverage: "English-taught programmes across French institutions",
+    stat: "1,600+ English-taught programmes", url: "https://taughtie.campusfrance.org/tiesearch/",
+  },
+  {
+    country: "Germany", flagImage: "/polaris/flags/de.png", source: "DAAD",
+    owner: "German Academic Exchange Service", coverage: "Bachelor's, Master's, doctoral and international programmes",
+    stat: "22,000+ degree programmes", url: "https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/",
+  },
+  {
+    country: "Türkiye", flagImage: "/polaris/flags/tr.png", source: "Study in Türkiye",
+    owner: "Council of Higher Education (YÖK)", coverage: "Associate, Bachelor's, Master's and doctoral programmes",
+    stat: "Official national programme finder", url: "https://www.studyinturkiye.gov.tr/StudySearch/List",
+  },
+  {
+    country: "China", flagImage: "/polaris/flags/cn.png", source: "Study in China",
+    owner: "Official national education portal", coverage: "Degree, non-degree and scholarship programme routes",
+    stat: "Official national catalogue", url: "https://www.studyinchina.edu.cn/",
+  },
+  {
+    country: "Sweden", flagImage: "/polaris/flags/se.png", source: "UniversityAdmissions.se",
+    owner: "Swedish Council for Higher Education", coverage: "Swedish university courses and programmes open to international applicants",
+    stat: "Official national admissions catalogue", url: "https://www.universityadmissions.se/intl/search",
+  },
+  {
+    country: "Austria", flagImage: "/polaris/flags/at.png", source: "Studienwahl.at",
+    owner: "OeAD — Austria's Agency for Education and Internationalisation", coverage: "Degree programmes at Austrian higher-education institutions",
+    stat: "2,500+ programmes", url: "https://www.studienwahl.at/en",
+  },
+  {
+    country: "Cyprus", flagImage: "/polaris/flags/cy.png", source: "CYQAA",
+    owner: "Cyprus Agency of Quality Assurance and Accreditation in Higher Education", coverage: "Accredited institutions and Bachelor's, Master's and doctoral programmes",
+    stat: "Accredited national listings", url: "https://www.dipae.ac.cy/en/accreditation-en/accredited-institutions-en",
+  },
+  {
+    country: "Malaysia", flagImage: "/polaris/flags/my.png", source: "Education Malaysia",
+    owner: "Education Malaysia Global Services under the Ministry of Higher Education", coverage: "Programmes and courses offered by Malaysian institutions",
+    stat: "Official programme directory", url: "https://educationmalaysia.gov.my/plan-your-studies/choose-what-to-study/programme-courses",
+  },
+  {
+    country: "Finland", flagImage: "/polaris/flags/fi.png", source: "Studyinfo.fi",
+    owner: "Finnish National Agency for Education", coverage: "Finnish degrees, qualifications and higher-education institutions",
+    stat: "National programme database", url: "https://studyinfo.fi/",
+  },
+] as const;
 
 export const services = [
   { symbol: "01", title: "Counselling", text: "A personal study plan shaped around your profile, goals and budget." },

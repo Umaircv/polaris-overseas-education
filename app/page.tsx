@@ -1,7 +1,7 @@
 import EnquiryForm from "./enquiry-form";
 import HomeCourseSearch from "./home-course-search";
 import { SiteFooter, SiteHeader, WhatsAppFloat } from "./site-shell";
-import { destinations, IELTS_DEMO_URL, TRACKING_WHATSAPP_URL, WHATSAPP_URL } from "./site-data";
+import { countrySlug, destinations, IELTS_DEMO_URL, officialCatalogues, TRACKING_WHATSAPP_URL, WHATSAPP_URL } from "./site-data";
 
 const faqs = [
   ["When should I start my application?", "Starting early gives you more time to compare programmes, collect documents and meet admission, scholarship and visa timelines. Share your preferred intake and we will help map the right starting point."],
@@ -12,7 +12,7 @@ const faqs = [
 
 const whyChoosePolaris = [
   { value: "1:1", title: "Personalised counselling", text: "Advice built around each student's academics, budget, destination goals and career direction.", icon: "◎" },
-  { value: "5", title: "Focused destinations", text: "Dedicated guidance for Italy, France, Germany, Türkiye and China—with country-specific next steps.", icon: "✦" },
+  { value: "10", title: "Focused destinations", text: "Country-specific guidance across ten European and Asian study destinations.", icon: "✦" },
   { value: "CLEAR", title: "Transparent progress", text: "Clear requirements, honest expectations and application status updates throughout the journey.", icon: "✓" },
   { value: "360°", title: "Complete application support", text: "Shortlisting, documents, applications, scholarship guidance, visa preparation and pre-departure help.", icon: "↗" },
   { value: "IELTS", title: "Language preparation", text: "IELTS preparation, English language support and a free demo class before enrolment.", icon: "A" },
@@ -40,6 +40,16 @@ const popularUniversities = [
   { name: "Peking University", country: "China", flag: "/polaris/flags/cn.png" },
   { name: "Zhejiang University", country: "China", flag: "/polaris/flags/cn.png" },
   { name: "Shanghai Jiao Tong University", country: "China", flag: "/polaris/flags/cn.png" },
+  { name: "KTH Royal Institute of Technology", country: "Sweden", flag: "/polaris/flags/se.png" },
+  { name: "Lund University", country: "Sweden", flag: "/polaris/flags/se.png" },
+  { name: "University of Vienna", country: "Austria", flag: "/polaris/flags/at.png" },
+  { name: "TU Wien", country: "Austria", flag: "/polaris/flags/at.png" },
+  { name: "University of Cyprus", country: "Cyprus", flag: "/polaris/flags/cy.png" },
+  { name: "Cyprus University of Technology", country: "Cyprus", flag: "/polaris/flags/cy.png" },
+  { name: "Universiti Malaya", country: "Malaysia", flag: "/polaris/flags/my.png" },
+  { name: "Universiti Putra Malaysia", country: "Malaysia", flag: "/polaris/flags/my.png" },
+  { name: "University of Helsinki", country: "Finland", flag: "/polaris/flags/fi.png" },
+  { name: "Aalto University", country: "Finland", flag: "/polaris/flags/fi.png" },
 ];
 
 export default function Home() {
@@ -87,32 +97,18 @@ export default function Home() {
           </div>
           <div className="hero-proof">
             <span><b>01</b> Profile-led advice</span>
-            <span><b>02</b> Five destinations</span>
+            <span><b>02</b> Ten destinations</span>
             <span><b>03</b> End-to-end support</span>
           </div>
         </div>
 
-        <div className="landmark-mosaic" aria-label="Featured study destinations">
-          <figure className="mosaic-main">
-            <img src="/polaris/landmarks/france.webp" alt="Eiffel Tower in Paris, France" fetchPriority="high" decoding="async" />
-            <figcaption><span>FR</span><strong>Study in France</strong><small>Paris · Eiffel Tower</small></figcaption>
-          </figure>
-          <figure>
-            <img src="/polaris/landmarks/italy.webp" alt="The Colosseum in Rome, Italy" decoding="async" />
-            <figcaption><span>IT</span><strong>Italy</strong></figcaption>
-          </figure>
-          <figure>
-            <img src="/polaris/landmarks/germany.webp" alt="Brandenburg Gate in Berlin, Germany" decoding="async" />
-            <figcaption><span>DE</span><strong>Germany</strong></figcaption>
-          </figure>
-          <figure>
-            <img src="/polaris/landmarks/turkiye.webp" alt="Hagia Sophia in Istanbul, Türkiye" decoding="async" />
-            <figcaption><span>TR</span><strong>Türkiye</strong></figcaption>
-          </figure>
-          <figure>
-            <img src="/polaris/landmarks/china.webp" alt="The Great Wall of China" decoding="async" />
-            <figcaption><span>CN</span><strong>China</strong></figcaption>
-          </figure>
+        <div className="landmark-mosaic landmark-mosaic-ten" aria-label="Ten featured study destinations">
+          {destinations.map((destination, index) => (
+            <figure key={destination.country}>
+              <img src={destination.image} alt={`${destination.landmark} in ${destination.country}`} fetchPriority={index === 0 ? "high" : undefined} decoding="async" />
+              <figcaption><span>{destination.code}</span><strong>{destination.country}</strong><small>{destination.landmark}</small></figcaption>
+            </figure>
+          ))}
           <div className="mosaic-star" aria-hidden="true">✦</div>
         </div>
       </section>
@@ -146,7 +142,7 @@ export default function Home() {
         <div className="section-heading light">
           <div>
             <p className="eyebrow"><span /> Study destinations</p>
-            <h2>Five countries.<br />A world of possibility.</h2>
+            <h2>Ten countries.<br />A world of possibility.</h2>
           </div>
           <p>Explore programme routes, institutions and scholarships across the destinations Polaris currently supports.</p>
         </div>
@@ -157,7 +153,7 @@ export default function Home() {
               <small>{destination.code} · STUDY IN</small>
               <h3>{destination.country}</h3>
               <p>{destination.note}</p>
-              <a href={`/course-finder#${destination.country.toLowerCase().replace("ü", "u")}`} aria-label={`Find official courses in ${destination.country}`}>Explore official source <span aria-hidden="true">↗</span></a>
+              <a href={`/course-finder#${countrySlug(destination.country)}`} aria-label={`Find official courses in ${destination.country}`}>Explore official source <span aria-hidden="true">↗</span></a>
             </article>
           ))}
         </div>
@@ -167,11 +163,11 @@ export default function Home() {
       <section className="popular-universities-section" aria-labelledby="popular-universities-title">
         <div className="popular-universities-heading">
           <p className="eyebrow dark"><span /> Explore institutions</p>
-          <h2 id="popular-universities-title">Popular universities across five countries.</h2>
+          <h2 id="popular-universities-title">Popular universities across ten countries.</h2>
           <p>Browse recognisable institutions, then use the Polaris Course Finder to verify current programmes and requirements.</p>
         </div>
-        <UniversityMarquee items={popularUniversities.slice(0, 10)} />
-        <UniversityMarquee items={popularUniversities.slice(10)} reverse />
+        <UniversityMarquee items={popularUniversities.slice(0, 15)} />
+        <UniversityMarquee items={popularUniversities.slice(15)} reverse />
         <div className="university-disclaimer">Featured for student exploration. Inclusion does not imply a formal university partnership.</div>
       </section>
 
@@ -201,7 +197,7 @@ export default function Home() {
           <h2>Search smarter before you apply.</h2>
           <p>Search programmes directly through the official national catalogue for each destination, then ask Polaris to verify requirements and guide your application.</p>
           <ul>
-            <li><span>✓</span> Five authoritative national catalogues</li>
+            <li><span>✓</span> Ten authoritative official catalogues</li>
             <li><span>✓</span> Direct links to official programme sources</li>
             <li><span>✓</span> Eligibility checks through WhatsApp</li>
           </ul>
@@ -209,14 +205,10 @@ export default function Home() {
         </div>
         <div className="finder-demo" aria-label="Official course catalogue sources">
           <div className="demo-top"><span>Live Course Sources</span><small>OFFICIAL CATALOGUES</small></div>
-          {[
-            ["/polaris/flags/it.png", "Universitaly", "Italy", "National university and course catalogue"],
-            ["/polaris/flags/de.png", "DAAD", "Germany", "21,000+ degree programmes"],
-            ["/polaris/flags/tr.png", "Study in Türkiye", "Türkiye", "9,000+ programme results"],
-          ].map(([flag, title, country, meta]) => (
-            <article key={title}><img className="demo-flag" src={flag} alt={`${country} flag`} loading="lazy" decoding="async" /><div><small>{country}</small><h3>{title}</h3><p>{meta}</p></div><span>↗</span></article>
+          {officialCatalogues.slice(5, 8).map((source) => (
+            <article key={source.country}><img className="demo-flag" src={source.flagImage} alt={`${source.country} flag`} loading="lazy" decoding="async" /><div><small>{source.country}</small><h3>{source.source}</h3><p>{source.stat}</p></div><span>↗</span></article>
           ))}
-          <a href="/course-finder">Open all five live catalogues →</a>
+          <a href="/course-finder">Open all ten live catalogues →</a>
         </div>
       </section>
 
@@ -277,7 +269,7 @@ function UniversityMarquee({ items, reverse = false }: { items: typeof popularUn
     <div className="university-marquee" aria-label="Popular universities">
       <div className={`university-track${reverse ? " reverse" : ""}`}>
         {loopItems.map((university, index) => (
-          <a href={`/course-finder?country=${encodeURIComponent(university.country)}`} className="university-mark" key={`${university.name}-${index}`}>
+          <a href={`/course-finder#${countrySlug(university.country)}`} className="university-mark" key={`${university.name}-${index}`}>
             <img src={university.flag} alt="" loading="lazy" decoding="async" />
             <span><strong>{university.name}</strong><small>{university.country}</small></span>
           </a>

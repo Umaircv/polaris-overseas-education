@@ -1,57 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { destinations } from "../site-data";
+import { countrySlug, destinations, officialCatalogues } from "../site-data";
 
 type View = "live" | "scholarships";
-
-const officialCatalogues = [
-  {
-    country: "Italy",
-    flagImage: "/polaris/flags/it.png",
-    source: "Universitaly",
-    owner: "Italian Ministry of University and Research",
-    coverage: "National universities, institutions and degree programmes",
-    stat: "Official national catalogue",
-    url: "https://www.universitaly.it/en/cerca-corsi",
-  },
-  {
-    country: "France",
-    flagImage: "/polaris/flags/fr.png",
-    source: "Campus France",
-    owner: "France's national higher-education agency",
-    coverage: "English-taught programmes across French institutions",
-    stat: "1,600+ English-taught programmes",
-    url: "https://taughtie.campusfrance.org/tiesearch/",
-  },
-  {
-    country: "Germany",
-    flagImage: "/polaris/flags/de.png",
-    source: "DAAD",
-    owner: "German Academic Exchange Service",
-    coverage: "Bachelor's, Master's, doctoral and international programmes",
-    stat: "22,000+ degree programmes",
-    url: "https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/",
-  },
-  {
-    country: "Türkiye",
-    flagImage: "/polaris/flags/tr.png",
-    source: "Study in Türkiye",
-    owner: "Council of Higher Education (YÖK)",
-    coverage: "Associate, Bachelor's, Master's and doctoral programmes",
-    stat: "Official national programme finder",
-    url: "https://www.studyinturkiye.gov.tr/StudySearch/List",
-  },
-  {
-    country: "China",
-    flagImage: "/polaris/flags/cn.png",
-    source: "Study in China",
-    owner: "Official national education portal",
-    coverage: "Degree, non-degree and scholarship programme routes",
-    stat: "Official national catalogue",
-    url: "https://www.studyinchina.edu.cn/",
-  },
-];
 
 export default function CourseFinder() {
   const [view, setView] = useState<View>("live");
@@ -72,8 +24,8 @@ export default function CourseFinder() {
           </div>
 
           <div className="official-source-header">
-            <div><p className="eyebrow dark"><span /> Official programme databases</p><h2>All five destinations</h2></div>
-            <p><strong>Five countries</strong> · five official catalogues</p>
+            <div><p className="eyebrow dark"><span /> Official programme databases</p><h2>All ten destinations</h2></div>
+            <p><strong>Ten countries</strong> · ten official catalogues</p>
           </div>
 
           <div className="official-source-grid">
@@ -106,7 +58,7 @@ export default function CourseFinder() {
 function OfficialSourceCard({ source }: { source: typeof officialCatalogues[number] }) {
   const message = encodeURIComponent(`Hello Polaris Global Education Center, please help me search programmes in ${source.country}.`);
   return (
-    <article className="official-source-card" id={source.country.toLowerCase().replace("ü", "u")}>
+    <article className="official-source-card" id={countrySlug(source.country)}>
       <div className="source-card-top"><img src={source.flagImage} alt={`${source.country} national flag`} /><small>OFFICIAL SOURCE</small></div>
       <p>{source.country}</p>
       <h3>{source.source}</h3>

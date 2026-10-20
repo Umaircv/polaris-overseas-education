@@ -3,7 +3,7 @@ import { ServicePage } from "../service-page";
 
 export const metadata: Metadata = {
   title: "Scholarship Guidance",
-  description: "Scholarship search, eligibility review and application guidance for students applying to Italy, France, Germany, Türkiye and China.",
+  description: "Scholarship search, eligibility review and application guidance across ten Polaris study destinations.",
 };
 
 export default function ScholarshipsPage() {
